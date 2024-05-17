@@ -1,0 +1,135 @@
+* {
+    /* border: 1px solid red; */
+}
+
+:root {
+    padding: 0;
+    margin: 0;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+
+    /* Variables */
+    --white: #fffbfb;
+    --grey: #f0eef1;
+    --black: #050505;
+    --red: #fd0e35;
+    --light-green: #9fff9c;
+    --light-red: #ff9c9c;
+    --border-radius: 8px;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+body {
+    background-color: var(--grey);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header, footer {
+    height: 10vh;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+header h1#page-title {
+    width: 50%;
+    font-size: 2.5rem;
+    letter-spacing: 1.5px;
+    line-height: 2rem;
+}
+
+footer {
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    font-weight: bold;
+}
+
+main {
+    height: 85vh;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section.add-new-book {
+    margin: 40px 0;
+}
+
+.add-new-book button#add-book {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.add-new-book button#add-book:hover {
+    background-color: var(--white);
+}
+
+section.book-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-rows: max-content;
+    gap: 20px;
+}
+
+.book-list div.book-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 15px 15px;
+}
+
+div.book-item span.book-item-text {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+div.book-item button.book-item-btn {
+    width: 100%;
+    border-radius: var(--border-radius);
+    border: none;
+    padding-block: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+div.book-item button.book-item-btn:active {
+    box-shadow: var(--shadow);
+    border: none;
+}
+
+div.book-item button.remove:hover {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+div.book-item button.read, div.book-item button.unread {
+    margin-top: auto;
+}
+
+div.book-item button.read {
+    background-color: var(--light-green);
+}
+
+div.book-item button.unread {
+    background-color: var(--light-red);
+}
