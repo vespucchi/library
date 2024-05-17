@@ -18,6 +18,25 @@
 
     <main>
         <section class="add-new-book">
+            <dialog id="book-modal">
+                <div class="book-flex">
+                    <h1 id="modal-header">Add new book</h1>
+                    <form action="" id="book-info" method="dialog">
+                        <input type="text" id="book-title" placeholder="Title"
+                            name="title" minlength="1" maxlength="50" autofocus required>
+                        <input type="text" id="book-author" placeholder="Author"
+                            name="author" minlength="1" maxlength="50" required>
+                        <input type="number" id="book-pages" placeholder="Pages"
+                            name="pages" min="1" max="5000" required>
+                        <div class="checkbox">
+                            <label for="book-read"><strong>Have you read it?</strong></label>
+                            <input type="checkbox" id="book-read" name="read">
+                        </div>
+                        <button class="book-item-btn submit">Submit</button>
+                    </form>
+                    <button id="close-modal">X</button>
+                </div>
+              </dialog>
             <button id="add-book">+ Add book</button>
         </section>
 
