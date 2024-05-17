@@ -21,7 +21,7 @@
             <dialog id="book-modal">
                 <div class="book-flex">
                     <h1 id="modal-header">Add new book</h1>
-                    <form action="" id="book-info" method="dialog">
+                    <form id="book-info" method="dialog">
                         <input type="text" id="book-title" placeholder="Title"
                             name="title" minlength="1" maxlength="50" autofocus required>
                         <input type="text" id="book-author" placeholder="Author"
@@ -33,6 +33,7 @@
                             <input type="checkbox" id="book-read" name="read">
                         </div>
                         <button class="book-item-btn submit">Submit</button>
+                        <span id="add-book-message"></span>
                     </form>
                     <button id="close-modal">X</button>
                 </div>
