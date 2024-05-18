@@ -1,10 +1,10 @@
 const myLibrary = [];
 const newBook = document.querySelector('form');
 const bookFeedback = document.querySelector('#add-book-message');
+const main = document.querySelector('main');
 
 
 class Book {
-  // the constructor...
     constructor(title, author, pages, read) {
         this.title = title;
         this.author = author;
@@ -16,43 +16,50 @@ class Book {
 newBook.addEventListener("submit", addBookToLibrary);
 
 function updateBookList() {
-    const myLibraryIndex = myLibrary.length - 1;
-    const bookList = document.querySelector('.book-list');
+    document.querySelector('.book-list').remove();
+    const bookList = document.createElement('section');
+    bookList.classList.add('book-list');
+    main.appendChild(bookList);
 
-    const newItem = document.createElement('div');
-    newItem.classList.add('book-item');
+    console.log(myLibrary);
 
-    const newItemTitle = document.createElement('span');
-    newItemTitle.classList.add('book-item-text');
-    newItemTitle.textContent = myLibrary[myLibraryIndex].title;
-    newItem.appendChild(newItemTitle);
 
-    const newItemAuthor = document.createElement('span');
-    newItemAuthor.classList.add('book-item-text');
-    newItemAuthor.textContent = myLibrary[myLibraryIndex].author;
-    newItem.appendChild(newItemAuthor);
+    myLibrary.forEach(book => {
+        const newItem = document.createElement('div');
+        newItem.classList.add('book-item');
 
-    const newItemPages = document.createElement('span');
-    newItemPages.classList.add('book-item-text');
-    newItemPages.textContent = myLibrary[myLibraryIndex].pages;
-    newItem.appendChild(newItemPages);
+        const newItemTitle = document.createElement('span');
+        newItemTitle.classList.add('book-item-text');
+        newItemTitle.textContent = book.title;
+        newItem.appendChild(newItemTitle);
 
-    const newItemBtnRead = document.createElement('button');
-    if(myLibrary[myLibraryIndex].read === 'on') {
-        newItemBtnRead.classList.add('book-item-btn', 'read');
-        newItemBtnRead.textContent = 'Read';
-    } else {
-        newItemBtnRead.classList.add('book-item-btn', 'unread');
-        newItemBtnRead.textContent = 'Unread';
-    }
-    newItem.appendChild(newItemBtnRead);
+        const newItemAuthor = document.createElement('span');
+        newItemAuthor.classList.add('book-item-text');
+        newItemAuthor.textContent = book.author;
+        newItem.appendChild(newItemAuthor);
 
-    const newItemBtnRemove = document.createElement('button');
-    newItemBtnRemove.classList.add('book-item-btn', 'remove');
-    newItemBtnRemove.textContent = 'Remove';
-    newItem.appendChild(newItemBtnRemove);
+        const newItemPages = document.createElement('span');
+        newItemPages.classList.add('book-item-text');
+        newItemPages.textContent = book.pages;
+        newItem.appendChild(newItemPages);
 
-    bookList.appendChild(newItem);
+        const newItemBtnRead = document.createElement('button');
+        if(book.read === true) {
+            newItemBtnRead.classList.add('book-item-btn', 'read');
+            newItemBtnRead.textContent = 'Read';
+        } else {
+            newItemBtnRead.classList.add('book-item-btn', 'unread');
+            newItemBtnRead.textContent = 'Unread';
+        }
+        newItem.appendChild(newItemBtnRead);
+
+        const newItemBtnRemove = document.createElement('button');
+        newItemBtnRemove.classList.add('book-item-btn', 'remove');
+        newItemBtnRemove.textContent = 'Remove';
+        newItem.appendChild(newItemBtnRemove);
+
+        bookList.appendChild(newItem);
+    })
 }
 
 function addBookToLibrary(event) {
@@ -118,3 +125,6 @@ openModal.addEventListener("click", () => {
 closeModal.addEventListener("click", () => {
     modal.close();
 });
+
+
+updateBookList();
