@@ -1,8 +1,7 @@
-const myLibrary = [];
+let myLibrary = [];
 const newBook = document.querySelector('form');
 const bookFeedback = document.querySelector('#add-book-message');
 const main = document.querySelector('main');
-
 
 class Book {
     constructor(title, author, pages, read) {
@@ -21,12 +20,10 @@ function updateBookList() {
     bookList.classList.add('book-list');
     main.appendChild(bookList);
 
-    console.log(myLibrary);
-
-
-    myLibrary.forEach(book => {
+    myLibrary.forEach((book, index) => {
         const newItem = document.createElement('div');
         newItem.classList.add('book-item');
+        newItem.dataset.index = index;
 
         const newItemTitle = document.createElement('span');
         newItemTitle.classList.add('book-item-text');
@@ -48,7 +45,7 @@ function updateBookList() {
             newItemBtnRead.classList.add('book-item-btn', 'read');
             newItemBtnRead.textContent = 'Read';
         } else {
-            newItemBtnRead.classList.add('book-item-btn', 'unread');
+            newItemBtnRead.classList.add('book-item-btn', 'read', 'unread');
             newItemBtnRead.textContent = 'Unread';
         }
         newItem.appendChild(newItemBtnRead);
@@ -60,7 +57,10 @@ function updateBookList() {
 
         bookList.appendChild(newItem);
     })
+
+    updateEventListeners();
 }
+
 
 function addBookToLibrary(event) {
     event.preventDefault();
@@ -76,12 +76,12 @@ function addBookToLibrary(event) {
 
     if(!bookExists) {
         myLibrary.push(book);
-        console.log(myLibrary[0].title);
         updateBookList();
     }
 
     return eraseInputs(bookExists);
 }
+
 
 function checkIfBookExist(book, title, author) {
     let flag = false;
@@ -96,6 +96,7 @@ function checkIfBookExist(book, title, author) {
     return flag === true ? true : false;
 }
 
+
 function eraseInputs(status) {
     if(status) {
         bookFeedback.style.color = 'red';
@@ -108,6 +109,34 @@ function eraseInputs(status) {
     }
 }
 
+
+function updateEventListeners() {
+    const bookItems = document.querySelectorAll('.book-item');
+
+    bookItems.forEach(item => {
+        const removeBtn = item.querySelector('.remove');
+        removeBtn.addEventListener("click", (e) => {
+            removeBookFromLibrary(item.dataset['index']);
+            updateBookList();
+        });
+        
+        const readBtn = item.querySelector('.read');
+        readBtn.addEventListener("click", (e) => {
+            changeReadStatus(item.dataset['index']);
+        })
+        });
+}
+
+
+function removeBookFromLibrary(index) {
+    myLibrary.splice(index, 1);
+}
+
+
+function changeReadStatus(index) {
+    myLibrary[index]['read'] = !myLibrary[index]['read'];
+    updateBookList();
+}
 
 // MODAL
 const modal = document.querySelector('dialog');

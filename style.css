@@ -126,7 +126,7 @@ div.book-item button.remove:hover {
     color: var(--white);
 }
 
-div.book-item button.read, div.book-item button.unread {
+div.book-item button.read {
     margin-top: auto;
 }
 
