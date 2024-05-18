@@ -161,12 +161,12 @@ form#book-info {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
 }
 
 form#book-info input[type="text"], form#book-info input[type="number"] {
     background-color: var(--white);
     border: none;
-    width: 100%;
     padding: 10px 10px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
